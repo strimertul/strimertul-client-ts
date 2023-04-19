@@ -15,7 +15,7 @@ await build({
     },
   },
   package: {
-    name: "@strimertul/strimertul-client",
+    name: "@strimertul/strimertul",
     version: Deno.args[0],
     description: "Client for interacting with strimertül",
     keywords: [],
