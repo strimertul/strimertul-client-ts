@@ -3,6 +3,9 @@ import { Twitch } from "./twitch/twitch.ts";
 import { Loyalty } from "./loyalty/loyalty.ts";
 
 export interface ClientOptions {
+  /* If provided, use the supplied Kilovolt connection instead of making a new one */
+  kv?: Kilovolt;
+
   /* Address to connect to (including path), a default will be used if this is not specified */
   address?: string;
 
@@ -37,10 +40,12 @@ export class Strimertul {
    * @param options Connection options for authentication
    */
   constructor(options: ClientOptions) {
-    this.kv = new Kilovolt(options.address || "ws://localhost:4337/ws", {
-      reconnect: true,
-      ...options,
-    });
+    this.kv =
+      options.kv ||
+      new Kilovolt(options.address || "ws://localhost:4337/ws", {
+        reconnect: true,
+        ...options,
+      });
     this.twitch = new Twitch(this.kv);
     this.loyalty = new Loyalty(this.kv);
   }
