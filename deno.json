@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "build-browser": "deno run -A scripts/build_browser.ts",
+    "build-npm":  "deno run -A scripts/build_npm.ts"
+  }
+}
